@@ -1,7 +1,7 @@
 <h1>Categories</h1>
 
 <p>
-  <%= link_to "New category", new_category_path, class: 'btn btn-primary' %>
+  <%= link_to "New category", new_category_path, class: 'btn btn-primary' if policy(:category).new? %>
 </p>
 
 <table id="categories" class="table table-responsive table-hover">
@@ -16,8 +16,8 @@
     <tr>
       <td><%= category.name %></td>
       <td>
-        <%= link_to "Edit this category", edit_category_path(category), class: 'btn btn-outline-warning' %>
-        <%= link_to "Destroy this category", category_path(category), class: 'btn btn-outline-danger', data: { turbo_method: :delete, turbo_confirm:'Are you sure?' } %>
+        <%= link_to "Edit this category", edit_category_path(category), class: 'btn btn-outline-warning' if policy(category).edit? %>
+        <%= link_to "Destroy this category", category_path(category), class: 'btn btn-outline-danger', data: { turbo_method: :delete, turbo_confirm:'Are you sure?' } if policy(category).destroy? %>
       </td>
     </tr>
     <% end %>
